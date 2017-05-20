@@ -16,9 +16,23 @@ function steps() {
   var limit = document.getElementById('limit').value;
 
   if (repeater <= limit) {
-    d3.select("body").append("p").text(repeater);
+    d3.select("body").append("span").text(repeater + ', ');
     repeater += adder;
     steps();
   }
 
 }
+
+$('#update').on('click', () => {
+  $('span').remove();
+  repeater = 1;
+  steps();
+});
+$('#limit').keydown(function (e) {
+  if (e.keyCode === 13) {
+    $('span').remove();
+    repeater = 1;
+    steps();
+    console.log(repeater);
+  }
+});
